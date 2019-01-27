@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div id="exampleToolbar" role="group">
+                    <input type="hidden" th:value="${referrerId}" id="referrerId">
+                    <div class="form-group col-sm-3">
+                        <input id="phone" type="text" class="form-control" placeholder="手机号码">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <input id="realName" type="text" class="form-control" placeholder="真实姓名">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <select class="form-control" id="memberType" >
+                            <option value="" selected>全部会员</option>
+                            <option value="1">普通会员</option>
+                            <option value="2">认证会员</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    </div>
+                </div>
+                <table id="user_member_lists" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/memberManager/userMember.js"></script>
+</body>
+</html>

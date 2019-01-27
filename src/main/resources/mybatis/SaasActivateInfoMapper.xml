@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwl.activateInfoManager.dao.SaasActivateInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zwl.activateInfoManager.domain.SaasActivateInfoDO" id="saasActivateInfoMap">
+        <result property="id" column="id"/>
+        <result property="merchantId" column="merchant_id"/>
+        <result property="phone" column="phone"/>
+        <result property="realName" column="real_name"/>
+        <result property="themeId" column="theme_id"/>
+        <result property="themeName" column="theme_name"/>
+        <result property="themePrice" column="theme_price"/>
+        <result property="referrer" column="referrer"/>
+        <result property="referrerName" column="referrer_name"/>
+        <result property="referrerPhone" column="referrer_phone"/>
+        <result property="activityId" column="activity_id"/>
+        <result property="isUsed" column="is_used"/>
+		<result property="createTime" column="create_time"/>
+		<result property="qrCodeUrl" column="qr_code_url"/>
+        <result property="activityCode" column="activity_code"/>
+        <result property="idCardNum" column="idCardNum"/>
+		<result property="remark" column="remark"/>
+		<result property="sendMsg" column="send_msg"/>
+    </resultMap>
+	<insert id="insertStudentList" parameterType="java.util.List">
+		insert into saas_activate_info
+		(
+			`merchant_id`, 
+			`phone`, 
+			`real_name`, 
+			`theme_id`, 
+			`theme_name`, 
+			`theme_price`, 
+			`referrer`, 
+			`referrer_name`,
+			`referrer_phone`, 
+			`activity_id`, 
+			`is_used`,
+			`send_msg`,
+			`activity_code`,
+			`qr_code_url`,
+            `id_card_num`,
+			`create_time`
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator="," close=";">
+			(
+			#{item.merchantId,jdbcType=VARCHAR},
+			#{item.phone,jdbcType=VARCHAR},
+			#{item.realName,jdbcType=VARCHAR},
+			#{item.themeId,jdbcType=INTEGER},
+			#{item.themeName,jdbcType=VARCHAR},
+			#{item.themePrice,jdbcType=INTEGER},
+			#{item.referrer,jdbcType=VARCHAR},
+			#{item.referrerName,jdbcType=VARCHAR},
+			#{item.referrerPhone,jdbcType=VARCHAR},
+			#{item.activityId,jdbcType=INTEGER},
+			#{item.isUsed,jdbcType=INTEGER},
+			0,
+			#{item.activityCode,jdbcType=INTEGER},
+			#{item.qrCodeUrl,jdbcType=VARCHAR},
+            #{item.idCardNum,jdbcType=VARCHAR},
+			#{item.createTime,jdbcType=VARCHAR})
+		</foreach>
+
+	</insert>
+	 
+
+
+</mapper>

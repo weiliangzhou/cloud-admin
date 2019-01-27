@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwl.user.dao.SaasUserInfoMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zwl.user.domain.SaasUserInfoDO" id="saasUserInfoMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="registerMobile" column="register_mobile"/>
+        <result property="realName" column="real_name"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="logoUrl" column="logo_url"/>
+        <result property="wechatNo" column="wechat_no"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="available" column="available"/>
+    </resultMap>
+
+    <sql id="column">
+		`id`, `user_id`, `register_mobile`, `real_name`, `nick_name`, `logo_url`, `wechat_no`, `modify_time`, `create_time`, `available`
+	</sql>
+
+    <select id="getUserInfoByUserId" resultMap="saasUserInfoMap">
+        select
+        <include refid="column"/>
+        from saas_user_info where user_id = #{userId}
+    </select>
+
+    <select id="queryList" resultMap="saasUserInfoMap">
+        select * from saas_user_info
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from saas_user_info 
+	</select>
+
+    <insert id="save" parameterType="com.zwl.user.domain.SaasUserInfoDO" useGeneratedKeys="true" keyProperty="id">
+		insert into saas_user_info
+		(
+			`user_id`, 
+			`register_mobile`, 
+			`real_name`, 
+			`nick_name`, 
+			`logo_url`, 
+			`wechat_no`, 
+			`modify_time`, 
+			`create_time`, 
+			`available`
+		)
+		values
+		(
+			#{userId}, 
+			#{registerMobile}, 
+			#{realName}, 
+			#{nickName}, 
+			#{logoUrl}, 
+			#{wechatNo}, 
+			#{modifyTime}, 
+			#{createTime}, 
+			#{available}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.zwl.user.domain.SaasUserInfoDO">
+        update saas_user_info
+        <set>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="registerMobile != null">`register_mobile` = #{registerMobile},</if>
+            <if test="realName != null">`real_name` = #{realName},</if>
+            <if test="nickName != null">`nick_name` = #{nickName},</if>
+            <if test="logoUrl != null">`logo_url` = #{logoUrl},</if>
+            <if test="wechatNo != null">`wechat_no` = #{wechatNo},</if>
+            <if test="modifyTime != null">`modify_time` = #{modifyTime},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="available != null">`available` = #{available}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from saas_user_info where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from saas_user_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

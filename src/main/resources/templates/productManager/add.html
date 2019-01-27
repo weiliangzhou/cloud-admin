@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">会员等级：</label>-->
+                            <!--<div class="col-sm-2">-->
+                                <!--<input id="level" name="level" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">等级名称：</label>-->
+                            <!--<div class="col-sm-2">-->
+                                <!--<input id="levelName" name="levelName" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品名称：</label>
+                            <div class="col-sm-2">
+                                <input id="productName" name="productName" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">副标题：</label>
+                            <div class="col-sm-4">
+                                <input id="contentText" name="contentText" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">分佣比例(%)：</label>-->
+                            <!--<div class="col-sm-2">-->
+                                <!--<input id="maidPercent" name="maidPercent" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">有效期按照天为单位存储：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input type="radio" name="validityTime" title="永久" value="99999" />-->
+                                <!--<input type="radio" name="validityTime" title="一年" value="365" />-->
+                                <!--<input type="radio" name="validityTime" title="一季度" value="90" />-->
+                                <!--<input type="radio" name="validityTime" title="一个月" value="30" />-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">价格：</label>
+                            <div class="col-sm-8">
+                                <input id="priceDesc" name="priceDesc" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">商户号：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="merchantId" name="merchantId" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color:red">*</span>商品图片：</label>
+                            <div class="col-sm-6">
+                                <div class="layui-upload">
+                                    <input id="imageUrl" name="imageUrl" class="form-control" type="text">
+                                    <button type="button" class="layui-btn" id="imgBtn">上传图片</button>
+                                    <div class="layui-upload-list">
+                                        <img class="layui-upload-img" id="imgShow">
+                                        <!--<p id="demoText"></p>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">简介：</label>
+                            <div class="col-sm-8">
+                                <textarea id="content" name="content" style="display: none;" ></textarea>
+                                <!--<input id="contentText" name="contentText" type="hidden">-->
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">购买的人数：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="buyCount" name="buyCount" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="createTime" name="createTime" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="modifyTime" name="modifyTime" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="available" name="available" class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/productManager/add.js">
+</script>
+</body>
+</html>

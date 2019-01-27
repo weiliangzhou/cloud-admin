@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwl.user.dao.MemberMapper">
+
+    <resultMap id="userResult" type="com.zwl.user.domain.MemberDO">
+        <result column="user_id" property="userId"/>
+        <result column="register_mobile" property="phone"/>
+        <result column="register_from" property="registerFrom"/>
+        <result column="real_name" property="realName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="logo_url" property="logoUrl"/>
+        <result column="wechat_no" property="wechatNo"/>
+        <result column="member_level" property="memberLevel"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="referrer" property="referrer"/>
+        <result column="open_id" property="openId"/>
+        <result column="channel_id" property="channelId"/>
+        <result column="register_time" property="registerTime"/>
+    </resultMap>
+
+    <select id="findUserListPage" parameterType="com.zwl.user.vo.MemberVo" resultMap="userResult">
+        select a.user_id,
+        a.register_mobile,
+        a.register_from,
+        a.register_time,
+        b.real_name,
+        b.nick_name,
+        b.logo_url,
+        b.wechat_no,
+        e.member_level,
+        e.merchant_id,
+        c.referrer
+        from saas_user a
+        left join saas_user_info b
+        on a.user_id = b.user_id
+        left join saas_user_referrer c
+        on a.user_id = c.user_id
+        left join saas_user_member e
+        on a.user_id = e.user_id
+        <where>
+            <if test="phone != null and phone!=''">
+                a.register_mobile like concat('%',#{phone},'%')
+            </if>
+            <if test="merchantId!=null and merchantId !=''">
+                and e.merchant_id = #{merchantId}
+            </if>
+            <if test="memberType != null and memberType.size() >0 ">
+                and e.member_level in
+                <foreach collection="memberType" separator="," open="(" close=")" item="mbType">
+                    #{mbType}
+                </foreach>
+            </if>
+            <if test="realName!=null and realName!=''">
+                and b.real_name like concat('%',#{realName},'%')
+            </if>
+            <if test="referrerId != null and referrerId!=''">
+                and c.referrer = #{referrerId}
+            </if>
+        </where>
+        order by a.register_time desc
+    </select>
+
+</mapper>

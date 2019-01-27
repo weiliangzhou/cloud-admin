@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t layui-form" id="signupForm">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">课程名称：</label>
+                            <div class="col-sm-2">
+                                <input id="themeName" name="themeName" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.themeName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">开课城市：</label>
+                            <div class="col-sm-2">
+                                <input id="activityAddress" name="activityAddress" class="form-control" type="text"
+                                       readonly th:value="${offlineActivityOrder.activityAddress}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动消费码：</label>
+                            <div class="col-sm-3">
+                                <input id="activityCode" name="activityCode" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.activityCode}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单金额：</label>
+                            <div class="col-sm-2">
+                                <input id="activityPrice" name="activityPrice" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.activityPrice}/100">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">	-->
+                        <!--<label class="col-sm-3 control-label">实际支付金额：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="actualMoney" name="actualMoney" class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单状态：</label>
+                            <div class="col-sm-2">
+                                <select name="orderStatus" name="orderStatus" lay-verify="" th:value="${offlineActivityOrder.orderStatus}" readonly>
+                                    <option value="0" th:selected="${offlineActivityOrder.orderStatus == 0}?true:false" readonly>待支付</option>
+                                    <option value="1" th:selected="${offlineActivityOrder.orderStatus == 1}?true:false" readonly>支付成功</option>
+                                    <option value="-1" th:selected="${offlineActivityOrder.orderStatus == -1}?true:false" readonly>超时</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">userId：</label>
+                            <div class="col-sm-3">
+                                <input id="userId" name="userId" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.userId}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">姓别：</label>
+                            <div class="col-sm-2">
+                                <select name="sex" name="sex" lay-verify="" th:value="${offlineActivityOrder.sex}" readonly>
+                                    <option value="0" th:selected="${offlineActivityOrder.sex == 0}?true:false">男</option>
+                                    <option value="1" th:selected="${offlineActivityOrder.sex == 1}?true:false">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手机号：</label>
+                            <div class="col-sm-2">
+                                <input id="phone" name="phone" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.phone}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">真实姓名：</label>
+                            <div class="col-sm-2">
+                                <input id="realName" name="realName" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.realName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">所在城市：</label>
+                            <div class="col-sm-2">
+                                <input id="city" name="city" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.city}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证号码：</label>
+                            <div class="col-sm-2">
+                                <input id="idCardNum" name="idCardNum" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.idCardNum}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付流水号：</label>
+                            <div class="col-sm-3">
+                                <input id="paymentNo" name="paymentNo" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.paymentNo}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付时间：</label>
+                            <div class="col-sm-2">
+                                <input id="paymentTime" name="paymentTime" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.paymentTime == null ? '' : #dates.format(offlineActivityOrder.paymentTime,'yyyy-MM-dd HH:mm:ss') }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户号：</label>
+                            <div class="col-sm-2">
+                                <input id="merchantId" name="merchantId" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.merchantId}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否返佣：</label>
+                            <div class="col-sm-2">
+                                <select name="isMaid" name="isMaid" lay-verify="" th:value="${offlineActivityOrder.isMaid}" readonly>
+                                    <option value="0" th:selected="${offlineActivityOrder.isMaid == 0}?true:false">不返佣</option>
+                                    <option value="1" th:selected="${offlineActivityOrder.isMaid == 1}?true:false">返佣</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否复训：</label>
+                            <div class="col-sm-2">
+                                <select name="isRetraining" name="isRetraining" lay-verify="" th:value="${offlineActivityOrder.isRetraining}" readonly>
+                                    <option value="0" th:selected="${offlineActivityOrder.isRetraining == 0}?true:false">不复训</option>
+                                    <option value="1" th:selected="${offlineActivityOrder.isRetraining == 1}?true:false">复训</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">职业：</label>
+                            <div class="col-sm-2">
+                                <select name="profession" name="profession" lay-verify="" th:value="${offlineActivityOrder.profession}" readonly>
+                                    <option value="0" th:selected="${offlineActivityOrder.profession == 0}?true:false" readonly>品牌商</option>
+                                    <option value="1" th:selected="${offlineActivityOrder.profession == 1}?true:false" readonly>团队长</option>
+                                    <option value="2" th:selected="${offlineActivityOrder.profession == 2}?true:false" readonly>创业者</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">客户经理userId：</label>
+                            <div class="col-sm-3">
+                                <input id="referrer" name="referrer" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.referrer}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">客户经理手机号：</label>
+                            <div class="col-sm-2">
+                                <input id="referrerPhone" name="referrerPhone" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.referrerPhone}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">客户经理姓名：</label>
+                            <div class="col-sm-2">
+                                <input id="referrerName" name="referrerName" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.referrerName}">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">	-->
+                        <!--<label class="col-sm-3 control-label">122334：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="remark" name="remark" class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">改签次数：</label>
+                            <div class="col-sm-2">
+                                <input id="changeTimes" name="changeTimes" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.changeTimes}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动开始时间：</label>
+                            <div class="col-sm-2">
+                                <input id="startTime" name="startTime" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.startTime == null ? '' : #dates.format(offlineActivityOrder.startTime,'yyyy-MM-dd HH:mm:ss') }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动结束时间：</label>
+                            <div class="col-sm-2">
+                                <input id="endTime" name="endTime" class="form-control" type="text" readonly
+                                       th:value="${offlineActivityOrder.endTime==null ? '' : #dates.format(offlineActivityOrder.endTime,'yyyy-MM-dd HH:mm:ss') }">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">	-->
+                        <!--<label class="col-sm-3 control-label">：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="createTime" name="createTime" class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">	-->
+                        <!--<label class="col-sm-3 control-label">：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="modifyTime" name="modifyTime" class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">	-->
+                        <!--<label class="col-sm-3 control-label">：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="available" name="available" class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<div class="col-sm-8 col-sm-offset-3">-->
+                        <!--<button type="submit" class="btn btn-primary">提交</button>-->
+                        <!--</div>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<!--<script type="text/javascript" src="/js/appjs/demo/saasOfflineActivityOrder/add.js">-->
+<!--</script>-->
+</body>
+</html>
